@@ -149,8 +149,7 @@ func getRecordId( DNS_nameslist []string ) []string {
 
 		req,err := http.NewRequest("GET","https://api.cloudflare.com/client/v4/zones/"+os.Getenv("ZONE_ID")+"/dns_records",nil)
 
-		req.Header.Add("X-Auth-Key",os.Getenv("X-Auth-Key"))
-		req.Header.Add("X-Auth-Email",os.Getenv("EMAIL") )
+		req.Header.Add("Authorization", "Bearer "+os.Getenv("API_KEY"))
 		res, err := http.DefaultClient.Do(req)
 
 		if err != nil {
